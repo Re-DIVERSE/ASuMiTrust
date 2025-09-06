@@ -1,4 +1,4 @@
-package com.github.re_storage.asumitrust.data;
+package com.github.re_diverse.asumitrust.data;
 
 public class ItemData {
 	public int box;
