@@ -1,9 +1,9 @@
-package com.github.aburaagetarou.asumitrust;
+package com.github.re_storage.asumitrust;
 
 import java.util.concurrent.TimeUnit;
 
-import com.github.aburaagetarou.asumitrust.data.PlayerData;
-import com.github.aburaagetarou.asumitrust.manager.DataManager;
+import com.github.re_storage.asumitrust.data.PlayerData;
+import com.github.re_storage.asumitrust.manager.DataManager;
 import com.zaxxer.hikari.HikariDataSource;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

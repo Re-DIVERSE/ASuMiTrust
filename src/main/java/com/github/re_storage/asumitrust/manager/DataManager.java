@@ -1,4 +1,4 @@
-package com.github.aburaagetarou.asumitrust.manager;
+package com.github.re_storage.asumitrust.manager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,8 +6,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
-import com.github.aburaagetarou.asumitrust.ASuMiTrust;
-import com.github.aburaagetarou.asumitrust.data.PlayerData;
+import com.github.re_storage.asumitrust.ASuMiTrust;
+import com.github.re_storage.asumitrust.data.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

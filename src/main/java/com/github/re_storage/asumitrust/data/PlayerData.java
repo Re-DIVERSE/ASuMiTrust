@@ -1,4 +1,4 @@
-package com.github.aburaagetarou.asumitrust.data;
+package com.github.re_storage.asumitrust.data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-import com.github.aburaagetarou.asumitrust.ASuMiTrust;
+import com.github.re_storage.asumitrust.ASuMiTrust;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;

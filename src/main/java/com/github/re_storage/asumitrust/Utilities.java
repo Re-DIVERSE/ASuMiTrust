@@ -1,4 +1,4 @@
-package com.github.aburaagetarou.asumitrust;
+package com.github.re_storage.asumitrust;
 
 public class Utilities
 {

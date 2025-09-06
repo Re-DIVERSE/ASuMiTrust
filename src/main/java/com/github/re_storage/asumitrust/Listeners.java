@@ -1,6 +1,6 @@
-package com.github.aburaagetarou.asumitrust;
+package com.github.re_storage.asumitrust;
 
-import com.github.aburaagetarou.asumitrust.manager.DataManager;
+import com.github.re_storage.asumitrust.manager.DataManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
