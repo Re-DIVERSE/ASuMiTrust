@@ -1,0 +1,39 @@
+
+# サーバーとの接続設定
+server:
+
+  # データベースサーバーのIPアドレス
+  # 文字列
+  address: "127.0.0.1"
+
+  # データベースサーバーのポート番号
+  # 数値(1～65535)
+  port: 3306
+
+  # アクセスするデータベースの名前
+  # 文字列
+  schema: "sample"
+
+  # データベースサーバーにアクセスするためのユーザー名
+  # 文字列
+  user: "user"
+
+  # ユーザーのパスワード
+  # 文字列
+  password: "password"
+
+# データベース設定
+database:
+
+  # JDBCのクラス名
+  # 文字列
+  class_name: "org.postgresql.Driver"
+
+  # 接続を維持する時間(分)
+  # 0未満でデフォルト値
+  # 数値
+  lifespan: 30
+
+data:
+
+  save_period: 30000
