@@ -1,7 +1,6 @@
 /.vscode/
 /target/
 /lib/
-.idea/
 
 *.iml
 *.ipr

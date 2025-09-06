@@ -1,4 +1,4 @@
 name: ASuMiTrust
 version: '1.0'
-main: com.github.aburaagetarou.asumitrust.ASuMiTrust
+main: com.github.re_diverse.asumitrust.ASuMiTrust
 api-version: '1.21'
