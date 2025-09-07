@@ -17,13 +17,11 @@ public class PlayerData {
 
 	public int money;
 
-	public int rate;
-
 	public Location spawnPoint;
 
-	public String syougouNow;
-
-	public short syougouMax;
+//	public String syougouNow;
+//
+//	public short syougouMax;
 
 	public List<String> syougou;
 
@@ -102,10 +100,9 @@ public class PlayerData {
 	public void clearAll() {
 		this.exp = 0;
 		this.money = 0;
-		this.rate = 0;
 		this.spawnPoint = null;
-		this.syougouNow = null;
-		this.syougouMax = 0;
+//		this.syougouNow = null;
+//		this.syougouMax = 0;
 		this.syougou = null;
 		this.stash = null;
 	}
@@ -121,15 +118,12 @@ public class PlayerData {
 				sql.append(" SELECT uuid             ");
 				sql.append("      , exp              ");
 				sql.append("      , money            ");
-				sql.append("      , rate             ");
 				sql.append("      , spawnpoint_world ");
 				sql.append("      , spawnpoint_x     ");
 				sql.append("      , spawnpoint_y     ");
 				sql.append("      , spawnpoint_z     ");
 				sql.append("      , spawnpoint_yaw   ");
 				sql.append("      , spawnpoint_pitch ");
-				sql.append("      , sg_now           ");
-				sql.append("      , sg_max           ");
 				sql.append(" FROM   PlayerData       ");
 				sql.append(" WHERE  uuid = ?         ");
 				PreparedStatement stmtPlayerData = con.prepareStatement(sql.toString());
@@ -138,15 +132,14 @@ public class PlayerData {
 				if (result.next()) {
 					this.exp = result.getInt("exp");
 					this.money = result.getInt("money");
-					this.rate = result.getInt("rate");
 					String worldName = result.getString("spawnpoint_world");
 					float x = result.getFloat("spawnpoint_x");
 					float y = result.getFloat("spawnpoint_y");
 					float z = result.getFloat("spawnpoint_z");
 					float yaw = result.getFloat("spawnpoint_yaw");
 					float pitch = result.getFloat("spawnpoint_pitch");
-					this.syougouNow = result.getString("sg_now");
-					this.syougouMax = result.getShort("sg_max");
+//					this.syougouNow = result.getString("sg_now");
+//					this.syougouMax = result.getShort("sg_max");
 					if (worldName != null) {
 						World world = Bukkit.getWorld(worldName);
 						if (world != null)
@@ -286,15 +279,12 @@ public class PlayerData {
 				sql.append(" UPDATE PlayerData SET       ");
 				sql.append("        exp              = ? ");
 				sql.append("      , money            = ? ");
-				sql.append("      , rate             = ? ");
 				sql.append("      , spawnpoint_world = ? ");
 				sql.append("      , spawnpoint_x     = ? ");
 				sql.append("      , spawnpoint_y     = ? ");
 				sql.append("      , spawnpoint_z     = ? ");
 				sql.append("      , spawnpoint_yaw   = ? ");
 				sql.append("      , spawnpoint_pitch = ? ");
-				sql.append("      , sg_now           = ? ");
-				sql.append("      , sg_max           = ? ");
 				sql.append(" WHERE  uuid             = ? ");
 				PreparedStatement stmtPlayerDataUpd = con.prepareStatement(sql.toString());
 				String world = null;
@@ -314,15 +304,14 @@ public class PlayerData {
 				int cnt = 1;
 				stmtPlayerDataUpd.setInt(cnt++, this.exp);
 				stmtPlayerDataUpd.setInt(cnt++, this.money);
-				stmtPlayerDataUpd.setInt(cnt++, this.rate);
 				stmtPlayerDataUpd.setString(cnt++, world);
 				stmtPlayerDataUpd.setFloat(cnt++, x);
 				stmtPlayerDataUpd.setFloat(cnt++, y);
 				stmtPlayerDataUpd.setFloat(cnt++, z);
 				stmtPlayerDataUpd.setFloat(cnt++, yaw);
 				stmtPlayerDataUpd.setFloat(cnt++, pitch);
-				stmtPlayerDataUpd.setString(cnt++, this.syougouNow);
-				stmtPlayerDataUpd.setShort(cnt++, this.syougouMax);
+//				stmtPlayerDataUpd.setString(cnt++, this.syougouNow);
+//				stmtPlayerDataUpd.setShort(cnt++, this.syougouMax);
 				stmtPlayerDataUpd.setString(cnt, this.uuid);
 				int resCnt = stmtPlayerDataUpd.executeUpdate();
 				stmtPlayerDataUpd.close();
@@ -332,20 +321,14 @@ public class PlayerData {
 					sql.append("        uuid              ");
 					sql.append("      , exp               ");
 					sql.append("      , money             ");
-					sql.append("      , rate              ");
 					sql.append("      , spawnpoint_world  ");
 					sql.append("      , spawnpoint_x      ");
 					sql.append("      , spawnpoint_y      ");
 					sql.append("      , spawnpoint_z      ");
 					sql.append("      , spawnpoint_yaw    ");
 					sql.append("      , spawnpoint_pitch  ");
-					sql.append("      , sg_now            ");
-					sql.append("      , sg_max            ");
 					sql.append(" ) VALUES (               ");
 					sql.append("        ?                 ");
-					sql.append("      , ?                 ");
-					sql.append("      , ?                 ");
-					sql.append("      , ?                 ");
 					sql.append("      , ?                 ");
 					sql.append("      , ?                 ");
 					sql.append("      , ?                 ");
@@ -360,15 +343,14 @@ public class PlayerData {
 					stmtPlayerDataIns.setString(cnt++, this.uuid);
 					stmtPlayerDataIns.setInt(cnt++, this.exp);
 					stmtPlayerDataIns.setInt(cnt++, this.money);
-					stmtPlayerDataIns.setInt(cnt++, this.rate);
 					stmtPlayerDataIns.setString(cnt++, world);
 					stmtPlayerDataIns.setFloat(cnt++, x);
 					stmtPlayerDataIns.setFloat(cnt++, y);
 					stmtPlayerDataIns.setFloat(cnt++, z);
 					stmtPlayerDataIns.setFloat(cnt++, yaw);
-					stmtPlayerDataIns.setFloat(cnt++, pitch);
-					stmtPlayerDataIns.setString(cnt++, this.syougouNow);
-					stmtPlayerDataIns.setShort(cnt, this.syougouMax);
+					stmtPlayerDataIns.setFloat(cnt, pitch);
+//					stmtPlayerDataIns.setString(cnt++, this.syougouNow);
+//					stmtPlayerDataIns.setShort(cnt, this.syougouMax);
 					stmtPlayerDataIns.executeUpdate();
 					stmtPlayerDataIns.close();
 				}
@@ -483,6 +465,7 @@ public class PlayerData {
 			try {
 				Connection con = ASuMiTrust.dataSource.getConnection();
 				try {
+					con.setAutoCommit(false);
 					StringBuilder sql = new StringBuilder();
 					sql.append(" DELETE FROM PlayerDataSync ");
 					sql.append(" WHERE  owner = ?           ");
