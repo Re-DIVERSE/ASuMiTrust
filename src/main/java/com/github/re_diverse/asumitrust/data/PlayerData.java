@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import com.github.re_diverse.asumitrust.ASuMiTrust;
 import org.bukkit.Bukkit;
@@ -33,6 +34,8 @@ public class PlayerData {
 
 	String uuid;
 
+	public String player_name;
+
 	public static boolean createTable() {
 		try {
 			Connection con = ASuMiTrust.dataSource.getConnection();
@@ -49,6 +52,7 @@ public class PlayerData {
 				sql = new StringBuilder();
 				sql.append(" CREATE TABLE IF NOT EXISTS PlayerData (      ");
 				sql.append("     uuid             varchar(40)    NOT NULL ");
+				sql.append("   , player_name      varchar(40)    NOT NULL ");
 				sql.append("   , exp              int            NOT NULL ");
 				sql.append("   , money            int            NOT NULL ");
 				sql.append("   , spawnpoint_world varchar(256)   NULL     ");
@@ -116,6 +120,7 @@ public class PlayerData {
 				int success = 0;
 				StringBuilder sql = new StringBuilder();
 				sql.append(" SELECT uuid             ");
+				sql.append("      , player_name      ");
 				sql.append("      , exp              ");
 				sql.append("      , money            ");
 				sql.append("      , spawnpoint_world ");
@@ -130,6 +135,7 @@ public class PlayerData {
 				stmtPlayerData.setString(1, this.uuid);
 				ResultSet result = stmtPlayerData.executeQuery();
 				if (result.next()) {
+					this.player_name = result.getString("player_name");
 					this.exp = result.getInt("exp");
 					this.money = result.getInt("money");
 					String worldName = result.getString("spawnpoint_world");
@@ -277,7 +283,8 @@ public class PlayerData {
 				}
 				sql = new StringBuilder();
 				sql.append(" UPDATE PlayerData SET       ");
-				sql.append("        exp              = ? ");
+				sql.append("        player_name      = ? ");
+				sql.append("      , exp              = ? ");
 				sql.append("      , money            = ? ");
 				sql.append("      , spawnpoint_world = ? ");
 				sql.append("      , spawnpoint_x     = ? ");
@@ -302,6 +309,7 @@ public class PlayerData {
 					pitch = this.spawnPoint.getPitch();
 				}
 				int cnt = 1;
+				stmtPlayerDataUpd.setString(cnt++, Bukkit.getOfflinePlayer(UUID.fromString(this.uuid)).getName());
 				stmtPlayerDataUpd.setInt(cnt++, this.exp);
 				stmtPlayerDataUpd.setInt(cnt++, this.money);
 				stmtPlayerDataUpd.setString(cnt++, world);
@@ -319,6 +327,7 @@ public class PlayerData {
 					sql = new StringBuilder();
 					sql.append(" INSERT INTO PlayerData ( ");
 					sql.append("        uuid              ");
+					sql.append("      , player_name       ");
 					sql.append("      , exp               ");
 					sql.append("      , money             ");
 					sql.append("      , spawnpoint_world  ");
@@ -337,10 +346,12 @@ public class PlayerData {
 					sql.append("      , ?                 ");
 					sql.append("      , ?                 ");
 					sql.append("      , ?                 ");
+					sql.append("      , ?                 ");
 					sql.append(" )                        ");
 					PreparedStatement stmtPlayerDataIns = con.prepareStatement(sql.toString());
 					cnt = 1;
 					stmtPlayerDataIns.setString(cnt++, this.uuid);
+					stmtPlayerDataIns.setString(cnt++, Bukkit.getOfflinePlayer(UUID.fromString(this.uuid)).getName());
 					stmtPlayerDataIns.setInt(cnt++, this.exp);
 					stmtPlayerDataIns.setInt(cnt++, this.money);
 					stmtPlayerDataIns.setString(cnt++, world);
