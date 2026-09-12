@@ -32,16 +32,16 @@ public final class ASuMiTrust extends JavaPlugin {
 		dataSource.close();
 	}
 
-	public void connect() {
-		saveDefaultConfig();
-		reloadConfig();
-		String address = getConfig().getString("server.address");
-		int port = getConfig().getInt("server.port");
-		String user = getConfig().getString("server.user");
-		String pass = getConfig().getString("server.password");
-		String schema = getConfig().getString("server.schema");
-		String driver = getConfig().getString("database.class_name");
-		int lifespan = getConfig().getInt("database.lifespan");
+	public static void connect() {
+		instance.saveDefaultConfig();
+		instance.reloadConfig();
+		String address = instance.getConfig().getString("server.address");
+		int port = instance.getConfig().getInt("server.port");
+		String user = instance.getConfig().getString("server.user");
+		String pass = instance.getConfig().getString("server.password");
+		String schema = instance.getConfig().getString("server.schema");
+		String driver = instance.getConfig().getString("database.class_name");
+		int lifespan = instance.getConfig().getInt("database.lifespan");
 		if (!Utilities.strNullCheck(address, user, pass, schema, driver))
 			throw new IllegalStateException("いずれかの設定が正しくありません。");
 		if (!Utilities.portCheck(port))
