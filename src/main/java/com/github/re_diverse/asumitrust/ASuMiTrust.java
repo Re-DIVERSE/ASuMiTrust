@@ -42,6 +42,7 @@ public final class ASuMiTrust extends JavaPlugin {
 		String schema = instance.getConfig().getString("server.schema");
 		String driver = instance.getConfig().getString("database.class_name");
 		int lifespan = instance.getConfig().getInt("database.lifespan");
+		int maxPoolSize = instance.getConfig().getInt("database.max_pool_size", 0);
 		if (!Utilities.strNullCheck(address, user, pass, schema, driver))
 			throw new IllegalStateException("いずれかの設定が正しくありません。");
 		if (!Utilities.portCheck(port))
@@ -54,6 +55,8 @@ public final class ASuMiTrust extends JavaPlugin {
 		dataSource.setJdbcUrl(url);
 		if (lifespan > 0)
 			dataSource.setMaxLifetime(TimeUnit.MINUTES.toMillis(lifespan));
+		if (maxPoolSize > 0)
+			dataSource.setMaximumPoolSize(maxPoolSize);
 	}
 
 	public static void error(String... messages) {
